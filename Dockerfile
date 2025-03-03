@@ -23,11 +23,11 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 FROM node:16-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/build ./build
 
 EXPOSE 3000
-ENV PORT 3000
+ENV PORT=3000
 
 CMD ["node", "build/main.js"]
